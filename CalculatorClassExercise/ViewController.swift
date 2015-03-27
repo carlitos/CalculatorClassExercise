@@ -32,5 +32,62 @@ class ViewController: UIViewController {
         //        println("digit = \(digit)")
         
     }
+    
+    
+    var operandStack = Array<Double>()
+ 
+
+    @IBAction func operate(sender: UIButton) {
+        
+        let operation = sender.currentTitle!
+
+        if clearDisplayWithNumber{
+            enternumber()
+        }
+        
+        switch operation{
+            case "×":
+              if operandStack.count >= 2{
+                    displayValue = operandStack.removeLast() * operandStack.removeLast()
+                    enternumber()
+                }
+        case "−":
+            if operandStack.count >= 2{
+                displayValue = operandStack.removeLast() - operandStack.removeLast()
+                enternumber()
+            }
+        case "+":
+            if operandStack.count >= 2{
+                displayValue = operandStack.removeLast() + operandStack.removeLast()
+                enternumber()
+            }
+        case "÷":
+            if operandStack.count >= 2{
+                displayValue = operandStack.removeLast() / operandStack.removeLast()
+                enternumber()
+            }
+            
+         default: break
+        }
+    }
+    
+    @IBAction func enternumber() {
+        clearDisplayWithNumber  = false
+        operandStack.append(displayValue)
+        
+        println("stack number \(operandStack)")
+    }
+    
+    
+    var displayValue: Double{
+        get{
+            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+        }
+        set{
+            display.text = "\(newValue)"
+            clearDisplayWithNumber = false
+        }
+    }
+    
 }
 
