@@ -52,56 +52,11 @@ class ViewController: UIViewController {
         case "÷": performOperations{ $1 / $0 }
         case "−": performOperations{ $1 - $0 }
         case "+": performOperations{ $0 + $1 }
-
-//        ONE WAY TO PUT IT
-//        case "×": performOperations{ $0 * $1 }
+        case "√": performOperations{ sqrt($0) }
             
-//        ONE WAY TO PUT IT
-//            SWIFT SABE QUE TIPO DE DATOS ESTÁ PASANDO
-//            PUEDES PASAR VALORES CON SIGNO DE PESO $0 VALOR Y $1 VALOR DOS HASTA "N"
-//        case "×": performOperations({ $0 * $1 })
-            
-//        ONE WAY TO PUT IT
-//        case "×": performOperations({(op1, op2 ) -> Double in op1 * op2 })
-
-//        ONE WAY TO PUT IT!
-//        case "×": performOperations({(op1: Double, op2: Double) -> Double in
-//            return op1 * op2
-//        })
-            
-            
-            
-//            case "−": performOperations(divide)
-//            case "+": performOperations(multiply)
-//            case "÷": performOperations(multiply)
         default: break
             
         }
-//-------------- OLD WAY TO DO IT ------------
-//        switch operation{
-//            case "×":
-//              if operandStack.count >= 2{
-//                    displayValue = operandStack.removeLast() * operandStack.removeLast()
-//                    enternumber()
-//                }
-//        case "−":
-//            if operandStack.count >= 2{
-//                displayValue = operandStack.removeLast() - operandStack.removeLast()
-//                enternumber()
-//            }
-//        case "+":
-//            if operandStack.count >= 2{
-//                displayValue = operandStack.removeLast() + operandStack.removeLast()
-//                enternumber()
-//            }
-//        case "÷":
-//            if operandStack.count >= 2{
-//                displayValue = operandStack.removeLast() / operandStack.removeLast()
-//                enternumber()
-//            }
-//            
-//         default: break
-//        }
 
     }
     
@@ -113,15 +68,13 @@ class ViewController: UIViewController {
         
     }
     
-//    OPERATIONS FUNCTIONS
-    
-//    func multiply(op1: Double, op2: Double) -> Double{
-//        return op1 * op2
-//    }
-//    
-//    func divide(op1: Double, op2: Double) -> Double{
-//        return  op2 / op1
-//    }
+    func performOperations(operation: Double -> Double){
+        if operandStack.count >= 1{
+            displayValue = operation(operandStack.removeLast())
+            enternumber()
+        }
+
+    }
     
     
     
