@@ -44,32 +44,57 @@ class ViewController: UIViewController {
         if clearDisplayWithNumber{
             enternumber()
         }
-        
-        switch operation{
-            case "×":
-              if operandStack.count >= 2{
-                    displayValue = operandStack.removeLast() * operandStack.removeLast()
-                    enternumber()
-                }
-        case "−":
-            if operandStack.count >= 2{
-                displayValue = operandStack.removeLast() - operandStack.removeLast()
-                enternumber()
-            }
-        case "+":
-            if operandStack.count >= 2{
-                displayValue = operandStack.removeLast() + operandStack.removeLast()
-                enternumber()
-            }
-        case "÷":
-            if operandStack.count >= 2{
-                displayValue = operandStack.removeLast() / operandStack.removeLast()
-                enternumber()
-            }
+
+        switch operation {
+            case "×": performOperations(multiply)
+//            case "−": performOperations(multiply)
+//            case "+": performOperations(multiply)
+//            case "÷": performOperations(multiply)
+        default: break
             
-         default: break
         }
+//-------------- OLD WAY TO DO IT ------------
+//        switch operation{
+//            case "×":
+//              if operandStack.count >= 2{
+//                    displayValue = operandStack.removeLast() * operandStack.removeLast()
+//                    enternumber()
+//                }
+//        case "−":
+//            if operandStack.count >= 2{
+//                displayValue = operandStack.removeLast() - operandStack.removeLast()
+//                enternumber()
+//            }
+//        case "+":
+//            if operandStack.count >= 2{
+//                displayValue = operandStack.removeLast() + operandStack.removeLast()
+//                enternumber()
+//            }
+//        case "÷":
+//            if operandStack.count >= 2{
+//                displayValue = operandStack.removeLast() / operandStack.removeLast()
+//                enternumber()
+//            }
+//            
+//         default: break
+//        }
+
     }
+    
+    func performOperations(operation: (Double, Double)-> Double){
+        if operandStack.count >= 2{
+            displayValue = operation(operandStack.removeLast() , operandStack.removeLast())
+            enternumber()
+            }
+        
+    }
+    
+    
+    func multiply(op1: Double, op2: Double) -> Double{
+        return op1 * op2
+    }
+    
+    
     
     @IBAction func enternumber() {
         clearDisplayWithNumber  = false
